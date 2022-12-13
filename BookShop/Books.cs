@@ -54,7 +54,9 @@ namespace BookShop
 
         private void label2_Click(object sender, EventArgs e)
         {
-
+            Users user = new Users();
+            user.Show();
+            this.Hide();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -73,7 +75,9 @@ namespace BookShop
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Book Saved Successfully");
-                    conn.Close();   
+                    conn.Close();
+                    populate();
+                    Reset();
                 }
                 catch(Exception ex)
                 {
@@ -98,6 +102,108 @@ namespace BookShop
         private void button5_Click(object sender, EventArgs e)
         {
             populate();
+            CatCbSearchCb.SelectedIndex = -1;
+        }
+        private void Reset()
+        {
+            BTitleTb.Text = "";
+            BAuther.Text = "";
+            BCbTb.SelectedIndex = -1;
+            BPriceTb.Text = "";
+            QtyTb.Text = "";
+        }
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        int key = 0;
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            BTitleTb.Text = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            BAuther.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+            BCbTb.SelectedItem = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            QtyTb.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
+            BPriceTb.Text = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
+            if (BTitleTb.Text == "")
+            {
+                key = 0;
+            }
+            else
+            {
+                key = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (key == 0 )
+            {
+                MessageBox.Show("Missing Information");
+            }
+            else
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"delete from  BookTbl where BId ="+key+";";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Book Deleted Successfully");
+                    conn.Close();
+                    populate();
+                    Reset();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            if (BTitleTb.Text == "" || BPriceTb.Text == "" || BAuther.Text == "" || QtyTb.Text == "" || BCbTb.SelectedIndex == -1)
+            {
+                MessageBox.Show("Missing Information");
+            }
+            else
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"update BookTbl set BTitle = '"+BTitleTb.Text+"',BAuther= '"+BAuther.Text+"',BCat='"+BCbTb.SelectedItem.ToString()+"',BQty="+QtyTb.Text+",BPince= "+BPriceTb.Text+" where BId = "+key+";";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Book Deleted Successfully");
+                    conn.Close();
+                    populate();
+                    Reset();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            //DashBoard dashBoard = new DashBoard();
+            //dashBoard.Show();
+            //this.Hide();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Hide();
         }
     }
 }

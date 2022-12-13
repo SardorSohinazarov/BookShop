@@ -32,8 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.UnameTb = new System.Windows.Forms.TextBox();
+            this.UpassTb = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -85,21 +85,23 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Password";
             // 
-            // textBox1
+            // UnameTb
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(225, 145);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(327, 15);
-            this.textBox1.TabIndex = 3;
+            this.UnameTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.UnameTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UnameTb.Location = new System.Drawing.Point(225, 145);
+            this.UnameTb.Name = "UnameTb";
+            this.UnameTb.Size = new System.Drawing.Size(327, 23);
+            this.UnameTb.TabIndex = 3;
             // 
-            // textBox2
+            // UpassTb
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Location = new System.Drawing.Point(225, 235);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(327, 15);
-            this.textBox2.TabIndex = 4;
+            this.UpassTb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.UpassTb.Location = new System.Drawing.Point(225, 235);
+            this.UpassTb.Name = "UpassTb";
+            this.UpassTb.Size = new System.Drawing.Size(327, 15);
+            this.UpassTb.TabIndex = 4;
+            this.UpassTb.UseSystemPasswordChar = true;
             // 
             // panel2
             // 
@@ -109,9 +111,9 @@
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.UnameTb);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.UpassTb);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(163, 115);
             this.panel2.Name = "panel2";
@@ -157,6 +159,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
             // 
@@ -167,6 +170,7 @@
             this.label5.Size = new System.Drawing.Size(72, 27);
             this.label5.TabIndex = 10;
             this.label5.Text = "Admin";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -206,8 +210,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox UnameTb;
+        private System.Windows.Forms.TextBox UpassTb;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel4;

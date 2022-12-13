@@ -16,7 +16,7 @@ namespace BookShop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Books());
+            Application.Run(new Splash());
         }
     }
 }
